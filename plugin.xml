@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-downloadBase64" version="0.0.1">
+    <name>DownloadBase64</name>
+
+    <description>An Android Cordova plugin that allows users to download large size image/pdf file's base64 string from server.</description>
+    <license>MIT</license>
+
+    <keywords>cordova,android,download,downloadFile,downloadBase64,file,downloadImage,downloadPdf,image,pdf</keywords>
+    <repo>https://github.com/Deejo/Cordova-plugin-downloadBase64.git</repo>
+    <issue>https://github.com/Deejo/Cordova-plugin-downloadBase64/issues</issue>
+  
+    <engines>
+        <engine name="cordova" version=">=3.0.0"/>
+    </engines>
+  
+    <js-module src="www/downloadBase64.js" name="downloadBase64">
+        <clobbers target="window.plugins.downloadBase64" />
+    </js-module>
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="DownloadBase64">
+                <param name="android-package" value="com.deejo.cordova.plugin.DownloadBase64"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/DownloadBase64.java" target-dir="src/com/deejo/cordova/plugin" />
+    </platform>
+</plugin>

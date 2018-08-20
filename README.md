@@ -1,2 +1,2 @@
 # Cordova-plugin-downloadBase64
-Cordova Android plugin to download large size file from Internet
+An Android Cordova plugin to download large size(base64), image/pdf, file from internet.

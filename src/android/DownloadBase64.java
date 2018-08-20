@@ -52,10 +52,11 @@ public class DownloadBase64 extends CordovaPlugin {
       // // Display toast
       // toast.show();
       
-	  downloadFile(url, filePath, fileName); 
+	  boolean returnValue = downloadFile(url, filePath, fileName); 
+	  return returnValue;
   }
   
-  public void downloadFile(final String url, final String filePath, final String fileName) {
+  public boolean downloadFile(final String url, final String filePath, final String fileName) {
 
         Thread networkThread = new Thread() {
 
@@ -97,7 +98,6 @@ public class DownloadBase64 extends CordovaPlugin {
                 }
             }
         };
-
         networkThread.start();
     }
   

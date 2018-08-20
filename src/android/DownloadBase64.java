@@ -46,17 +46,11 @@ public class DownloadBase64 extends CordovaPlugin {
         return false;
       }
 	  
-	  // // Create the toast
-      // Toast toast = Toast.makeText(cordova.getActivity(), message,
-	  // DURATION_LONG.equals(duration) ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT);
-      // // Display toast
-      // toast.show();
-      
-	  boolean returnValue = downloadFile(url, filePath, fileName); 
-	  return returnValue;
+      downloadFile(url, filePath, fileName); 
+ 	//return returnValue;
   }
   
-  public boolean downloadFile(final String url, final String filePath, final String fileName) {
+  public void downloadFile(final String url, final String filePath, final String fileName) {
 
         Thread networkThread = new Thread() {
 
@@ -87,7 +81,7 @@ public class DownloadBase64 extends CordovaPlugin {
 		    // Send a positive result to the callbackContext
 		    PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
 		    callbackContext.sendPluginResult(pluginResult);
-		    return true;
+		    //return true;
 			
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();

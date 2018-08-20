@@ -1,0 +1,39 @@
+{
+  "name": "cordova-plugin-downloadBase64",
+  "version": "0.0.1",
+  "description": "An Android Cordova plugin that allows users to download large size image/pdf file's base64 string from server.",
+  "cordova": {
+    "id": "cordova-plugin-downloadBase64",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Deejo/Cordova-plugin-downloadBase64.git"
+  },
+  "keywords": [
+    "cordova",
+	"android",
+	"download",
+	"downloadFile",
+	"downloadBase64",
+	"file",
+	"downloadImage",
+	"downloadPdf",
+	"image",
+	"pdf"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Dipak Jotaneeya <dipak.jotaneeya18@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Deejo/Cordova-plugin-downloadBase64/issues"
+  },
+  "homepage": "https://github.com/Deejo/Cordova-plugin-downloadBase64/"
+}

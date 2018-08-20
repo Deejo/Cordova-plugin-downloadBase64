@@ -65,6 +65,9 @@ public class DownloadBase64 extends CordovaPlugin {
                 File outputFile = new File(filePath, fileName);
 
                 try {
+			
+		    CallbackContext callbackContext;
+			
                     URL u = new URL(url);
                     URLConnection conn = u.openConnection();
                     int contentLength = conn.getContentLength();
@@ -80,10 +83,11 @@ public class DownloadBase64 extends CordovaPlugin {
                     fos.flush();
                     fos.close();
 					
-					// Send a positive result to the callbackContext
-					PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
-					callbackContext.sendPluginResult(pluginResult);
-					return true;
+		    // Send a positive result to the callbackContext
+		    PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
+		    callbackContext.sendPluginResult(pluginResult);
+		    return true;
+			
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                     return;

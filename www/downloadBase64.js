@@ -5,12 +5,12 @@ function DownloadBase64() {}
 // @param url        URL of the file from where it has to be downloaded
 // @param folderName folderName, under which file has to be downloaded (under Download directory)
 // @param fileName   Name of the file with which it has to be saved (filename.extension)
-DownloadBase64.prototype.show = function(url, filePath, fileName, successCallback, errorCallback) {
+DownloadBase64.prototype.downloadFile = function(url, filePath, fileName, successCallback, errorCallback) {
   var options = {};
   options.url = url;
   options.filePath = filePath;
   options.fileName = fileName;
-  cordova.exec(successCallback, errorCallback, 'DownloadBase64', 'show', [options]);
+  cordova.exec(successCallback, errorCallback, 'DownloadBase64', 'downloadFile', [options]);
 }
 
 // Installation constructor that binds DownloadBase64 to window

@@ -27,7 +27,7 @@ public class DownloadBase64 extends CordovaPlugin {
 	
   @Override
   public boolean execute(String action, JSONArray args,
-     CallbackContext callbackContext) {
+     final CallbackContext callbackContext) {
       // Verify that the user sent a 'show' action
       if (!action.equals("downloadFile")) {
         callbackContext.error("\"" + action + "\" is not a recognized action.");
@@ -52,7 +52,7 @@ public class DownloadBase64 extends CordovaPlugin {
       return result;
   }
   
-  public void downloadFile(final String url, final String filePath, final String fileName, CallbackContext callbackContext) {
+  public void downloadFile(final String url, final String filePath, final String fileName, final CallbackContext callbackContext) {
 	
         Thread networkThread = new Thread() {
 

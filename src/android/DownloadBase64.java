@@ -23,7 +23,8 @@ import org.json.JSONObject;
 public class DownloadBase64 extends CordovaPlugin {
 
   String filePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
-  
+  boolean result = false;
+	
   @Override
   public boolean execute(String action, JSONArray args,
     final CallbackContext callbackContext) {
@@ -34,35 +35,33 @@ public class DownloadBase64 extends CordovaPlugin {
       }
 	  
       String url;
-	  String fileName;
+      String fileName;
 	  
       try {
         JSONObject options = args.getJSONObject(0);
         url = options.getString("url");
         filePath = filePath + options.getString("folderName");
-		fileName = options.getString("fileName");
+	fileName = options.getString("fileName");
+	
+	downloadFile(url, filePath, fileName, callbackContext); 
+	      
       } catch (JSONException e) {
         callbackContext.error("Error encountered: " + e.getMessage());
         return false;
       }
-	  
-      downloadFile(url, filePath, fileName); 
- 	//return returnValue;
+      return result;
   }
   
-  public void downloadFile(final String url, final String filePath, final String fileName) {
-
+  public void downloadFile(final String url, final String filePath, final String fileName, CallbackContext callbackContext) {
+	
         Thread networkThread = new Thread() {
 
             @Override
             public void run() {
 
                 File outputFile = new File(filePath, fileName);
-
-                try {
-			
-		    CallbackContext callbackContext;
-			
+		    
+                try {	
                     URL u = new URL(url);
                     URLConnection conn = u.openConnection();
                     int contentLength = conn.getContentLength();
@@ -77,18 +76,20 @@ public class DownloadBase64 extends CordovaPlugin {
                     fos.write(buffer);
                     fos.flush();
                     fos.close();
-					
-		    // Send a positive result to the callbackContext
-		    //PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
-		    //callbackContext.sendPluginResult(pluginResult);
-		    //return true;
+		    result = true;
 			
+		    // Send a positive result to the callbackContext
+		    PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
+		    callbackContext.sendPluginResult(pluginResult);
+		    
                 } catch (FileNotFoundException e) {
+		    result = false;
                     e.printStackTrace();
-                    return;
+                    callbackContext.error("Error encountered: " + e.getMessage());
                 } catch (IOException e) {
+	            result = false;
                     e.printStackTrace();
-                    return;
+		    callbackContext.error("Error encountered: " + e.getMessage());
                 }
             }
         };
